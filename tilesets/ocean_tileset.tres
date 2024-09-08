@@ -1,0 +1,27 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bp3md7p7xaaxw"]
+
+[ext_resource type="Texture2D" uid="uid://bejepc1h25doy" path="res://images/Ocean_SpriteSheet.png" id="1_afamg"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_akhqh"]
+texture = ExtResource("1_afamg")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+7:1/0 = 0
+6:1/0 = 0
+5:1/0 = 0
+4:1/0 = 0
+3:1/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+
+[resource]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_akhqh")
