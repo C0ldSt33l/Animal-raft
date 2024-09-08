@@ -11,20 +11,16 @@ config_version=5
 [application]
 
 config/name="Animal raft"
+run/main_scene="res://main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-RaftData="*res://raft_data.gd"
+Settings="*res://SettingsConf.gd"
 
-[display]
+[file_customization]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
-window/size/resizable=false
-window/stretch/scale_mode="integer"
-
-[rendering]
-
-textures/canvas_textures/default_texture_filter=0
+folder_colors={
+"res://main_menu/": "orange"
+}
