@@ -11,5 +11,16 @@ config_version=5
 [application]
 
 config/name="Animal raft"
+run/main_scene="res://main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Settings="*res://SettingsConf.gd"
+
+[file_customization]
+
+folder_colors={
+"res://main_menu/": "orange"
+}
