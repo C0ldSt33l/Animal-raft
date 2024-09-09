@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c50lyh88hhps5"]
+[gd_scene load_steps=8 format=3 uid="uid://lb0ybdppmw7t"]
 
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_gon6s"]
-[ext_resource type="PackedScene" uid="uid://b2v6uo0ntlf76" path="res://main_menu/settings_menu.tscn" id="2_18tsl"]
-[ext_resource type="AudioStream" uid="uid://btlulam85n7o2" path="res://assets/music/main menu (need to replace).mp3" id="3_idwi4"]
+[ext_resource type="PackedScene" path="res://main_menu/settings_menu.tscn" id="2_18tsl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aur20"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -126,10 +125,7 @@ visible = false
 layout_mode = 1
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_idwi4")
 autoplay = true
-bus = &"Music"
-parameters/looping = true
 
 [node name="SoundEffect" type="AudioStreamPlayer" parent="."]
 
