@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctdk6gh38vany"]
+
+[ext_resource type="Script" path="res://ark/ark.gd" id="1_hyjvb"]
+
+[node name="Ark" type="Node2D"]
+position = Vector2(940, 357)
+script = ExtResource("1_hyjvb")

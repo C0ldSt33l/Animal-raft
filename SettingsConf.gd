@@ -19,8 +19,12 @@ var master_volume: int = 100
 var music_volume: int = 100
 var sfx_volume: int = 100
 
+var is_run := false
+
 
 func _ready() -> void:
+	if !is_run:
+		return
 	# print(self.get_property_list())
 	self._print_settings()
 	if !FileAccess.file_exists(self.SAVE_FILE_PATH):

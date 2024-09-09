@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dchjls84gte1i"]
+
+[ext_resource type="Script" path="res://ark/cell.gd" id="1_6412g"]
+
+[node name="Cell" type="Sprite2D"]
+position = Vector2(563, 317)
+script = ExtResource("1_6412g")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+text = "Cell"
+horizontal_alignment = 1
+vertical_alignment = 1
