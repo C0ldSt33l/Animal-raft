@@ -3,55 +3,45 @@ extends Node2D
 
 
 const ARRAY_SIZE := Vector2i(7, 7)
-const CENTRAL_CELL_POS := Vector2i(3, 3)
-const CELL_START_POS := Vector2i(50, 50)
+const CENTRE_CELL_POS := Vector2i(3, 3)
 var cells: Array[Cell] = []
 
-@export var health: int
 @export var speed: int
 @export var fov: float
 
 @export var cell_scen: PackedScene
 
 
-func _init() -> void:
-	pass
-
-
 func _ready() -> void:
-	var cur_pos := self.CELL_START_POS 
+	var cur_pos := Vector2i.ZERO 
 	for row in range(self.ARRAY_SIZE.x):
 		for col in range(self.ARRAY_SIZE.y):
-			var cell := Cell.new(cur_pos)
+			var cell := Cell.BRANCH_CELL.duplicate() as Cell
+			cell.position = cur_pos
 			self.cells.append(cell)
 			cur_pos.x += Cell.CELL_SIZE.x + 10
 
 			self.add_child(cell)
 
 		cur_pos.y += Cell.CELL_SIZE.y + 10
-		cur_pos.x = self.CELL_START_POS.x
+		cur_pos.x = 0
 		
 	self._make_cells_enabled([
-		self.CENTRAL_CELL_POS,
+		self.CENTRE_CELL_POS,
 
-		self.CENTRAL_CELL_POS + Vector2i(1, 1),
-	 	self.CENTRAL_CELL_POS + Vector2i(0, 1),
-   		self.CENTRAL_CELL_POS + Vector2i(-1, 1),
+		self.CENTRE_CELL_POS + Vector2i(1, 1),
+	 	self.CENTRE_CELL_POS + Vector2i(0, 1),
+   		self.CENTRE_CELL_POS + Vector2i(-1, 1),
 
-		self.CENTRAL_CELL_POS + Vector2i(1, -1),
-		self.CENTRAL_CELL_POS + Vector2i(0, -1)	,
-		self.CENTRAL_CELL_POS + Vector2i(-1, -1),
+		self.CENTRE_CELL_POS + Vector2i(1, -1),
+		self.CENTRE_CELL_POS + Vector2i(0, -1)	,
+		self.CENTRE_CELL_POS + Vector2i(-1, -1),
 
-		self.CENTRAL_CELL_POS + Vector2i(1, 0),
-		self.CENTRAL_CELL_POS + Vector2i(-1, 0),
+		self.CENTRE_CELL_POS + Vector2i(1, 0),
+		self.CENTRE_CELL_POS + Vector2i(-1, 0),
 	])
 
-
-	# for i in range(self.ARRAY_SIZE.x):
-	# 	var line: String
-	# 	for j in range(self.ARRAY_SIZE.y):
-	# 		line += str(self.cells[i + j].position)
-	# 	print(line)
+	self.replace_cell(self.CENTRE_CELL_POS, Cell.CENTERE_CELL.duplicate())
 
 
 func change_cell(pos: Vector2i, new_cell: Cell) -> void:
@@ -67,6 +57,20 @@ func get_cell(pos: Vector2i) -> Cell:
 	return self.cells[line + col]
 
 
+func get_centre_cell() -> Cell:
+	return self.get_cell(self.CENTRE_CELL_POS)
+
+
+func replace_cell(pos: Vector2i, cell: Cell) -> void:
+	var index := pos.x * self.ARRAY_SIZE.x + pos.y
+	cell.position =  self.cells[index].position
+
+	remove_child(self.cells[index])
+
+	self.cells[index] = cell
+	add_child(cell)
+
+
 func _swap_cells(pos_1: Vector2i, pos_2: Vector2i) -> void:
 	var cell_1 := self.get_cell(pos_1)
 	var cell_2 := self.get_cell(pos_2)
@@ -78,4 +82,6 @@ func _swap_cells(pos_1: Vector2i, pos_2: Vector2i) -> void:
 
 func _make_cells_enabled(positions: Array[Vector2i]) -> void:
 	for pos in positions:
-		self.get_cell(pos).disabled = false
+		var cell := self.get_cell(pos)
+		# cell.disabled = false
+		cell.show()
