@@ -24,90 +24,91 @@ var FUNC_DIC := {
 
 func Chicken_build_skill():
 	print('ko')
-func Chicken_attack_skill():
+func Chicken_attack_skill(enemy:Enemy):
 	print('agressive ko')
 	
 func Crab_build_skill():
 	print('clacking')
-func Crab_attack_skill():
+func Crab_attack_skill(enemy:Enemy):
 	print('agressive clacking')
 	
 func Toad_build_skill():
 	print('croaking')
-func Toad_attack_skill():
+func Toad_attack_skill(enemy:Enemy):
 	print('agressive croaking')
 	
 func Monkey_build_skill():
 	print('Monkey')
-func Monkey_attack_skill():
+func Monkey_attack_skill(enemy:Enemy):
 	print('agressive Monkey')
 	
 func Pig_build_skill():
 	print('oinc')
-func Pig_attack_skill():
+func Pig_attack_skill(enemy:Enemy):
 	print('agessive oinc')
 
 func Dog_build_skill():
 	print('barking')
-func Dog_attack_skill():
+func Dog_attack_skill(enemy:Enemy):
 	print('barking')
 
 func Cow_build_skill():
 	print('moo')
-func Cow_attack_skill():
+func Cow_attack_skill(enemy:Enemy):
 	print('agressive moo')
 	
 func Goose_build_skill():
 	print('its a GOOSE!')
-func Goose_attack_skill():
+func Goose_attack_skill(enemy:Enemy):
 	print('its a agressive GOOSE!')
 	
 func Gorilla_build_skill():
 	print('Gorilla')
-func Gorilla_attack_skill():
+func Gorilla_attack_skill(enemy:Enemy):
 	print('agressive Gorilla')
 	
 func Boar_build_skill():
 	print('boar')
-func Boar_attack_skill():
+func Boar_attack_skill(enemy:Enemy):
 	print('hard boar')
 	
 func Moose_build_skill():
 	print('Moose')
-func Moose_attack_skill():
+func Moose_attack_skill(enemy:Enemy):
 	print('agressive Moose')
 	
 func Cat_build_skill():
 	print('meowing')
-func Cat_attack_skill():
+func Cat_attack_skill(enemy:Enemy):
 	print('scream')
 	
 func Goat_build_skill():
 	print('goat')
-func Goat_attack_skill():
+func Goat_attack_skill(enemy:Enemy):
 	print('ram')
 
 func Sheep_build_skill():
 	print('Sheep')
-func Sheep_attack_skill():
+func Sheep_attack_skill(enemy:Enemy):
 	print('aggresive cloud')
 	
 func Turtle_build_skill():
 	print('turtle')
-func Turtle_attack_skill():
+func Turtle_attack_skill(enemy:Enemy):
 	print('turtle')
 	
 func Porcupine_build_skill():
 	print('Porcupine')
-func Porcupine_attack_skill():
+func Porcupine_attack_skill(enemy:Enemy):
 	print('agressive Porcupine')
 		
 func Skunk_build_skill():
 	print('Skunk')
-func Skunk_attack_skill():
+func Skunk_attack_skill(enemy:Enemy):
 	print('Skunk attack')
 	
 func Wolf_build_skill():
 	print('woof')
-func Wolf_attack_skill():
+func Wolf_attack_skill(enemy:Enemy):
 	print('agressive woof')
+	enemy.Damage()

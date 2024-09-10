@@ -2,6 +2,7 @@ extends TextureButton
 
 @export var _Name: String = "Chicken"
 @export var _size: int = 0 
+@export var Cooldawn: int = 0
 
 @onready var sprite = $AnimatedSprite2D as AnimatedSprite2D
 @onready var skills = $"/root/AnimalsSkill" 
@@ -17,5 +18,8 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_pressed() -> void:
+	emit_signal('ChosenAnial',self)
 	print('signal')
-	skills.FUNC_DIC[_Name][1].call() # Replace with function body.
+	
+func getName() -> String: 
+	return _Name

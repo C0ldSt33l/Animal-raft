@@ -4,3 +4,11 @@
 
 [node name="FightScene" type="Node2D"]
 script = ExtResource("1_vm2hl")
+
+[node name="TakenDamage" type="Label" parent="."]
+offset_left = 320.0
+offset_right = 360.0
+offset_bottom = 23.0
+
+[connection signal="ChosenAnimal" from="." to="." method="_on_chosen_animal"]
+[connection signal="ChosenEnemy" from="." to="." method="_on_chosen_enemy"]

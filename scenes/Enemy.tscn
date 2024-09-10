@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://yn4odolsueqp"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_5gvkc"]
+[ext_resource type="Texture2D" uid="uid://b7pgx8k4rrcm4" path="res://Animals_img/Enemy/Mushroom/Mushroom with VFX/Mushroom-Idle.png" id="1_hf4wa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbe7u"]
+atlas = ExtResource("1_hf4wa")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3owc"]
+atlas = ExtResource("1_hf4wa")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5tym"]
+atlas = ExtResource("1_hf4wa")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nmoy"]
+atlas = ExtResource("1_hf4wa")
+region = Rect2(240, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tueb"]
+atlas = ExtResource("1_hf4wa")
+region = Rect2(320, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj4vi"]
+atlas = ExtResource("1_hf4wa")
+region = Rect2(400, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgns2"]
+atlas = ExtResource("1_hf4wa")
+region = Rect2(480, 0, 80, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35su3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbe7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3owc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5tym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nmoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tueb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj4vi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgns2")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="TextureButton"]
+offset_right = 81.0
+offset_bottom = 73.0
+script = ExtResource("1_5gvkc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(40, 33)
+sprite_frames = SubResource("SpriteFrames_35su3")
+animation = &"Idle"
+autoplay = "Idle"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
