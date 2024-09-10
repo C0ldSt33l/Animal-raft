@@ -16,18 +16,19 @@ const CELL_HP_ARRAY := [50, 100]
 var store_unit: Object = null
 var material_type: MATERIAL_TYPE
 
-var enabled: bool
+# var enabled: bool
 
 
 func _init(
 	pos: Vector2i = Vector2i.ZERO,
 	type: MATERIAL_TYPE = MATERIAL_TYPE.VOID,
-	enable: bool = true
+	disable: bool = true
 ) -> void:
 	self.material_type = type
 	self.health = self.CELL_HP_ARRAY[type]
 	self.set_pos(pos)
-	self.enabled = enable
+	# self.enabled = enable
+	self.disabled = disable
 
 
 func _ready() -> void:
@@ -39,6 +40,9 @@ func _process(_delta: float) -> void:
 
 
 func _draw() -> void:
+	if self.disabled:
+		return
+
 	const width := 4.0
 
 	var rect := Rect2(Vector2.ZERO, self.CELL_SIZE)
@@ -47,6 +51,7 @@ func _draw() -> void:
 	rect.position += Vector2(width, width) / 2
 	
 	draw_rect(rect, Color.BLACK, false, width)
+	# draw_texture(self.texture_normal, self.position)
 
 	if self.store_unit:
 		self.store_unit._draw()

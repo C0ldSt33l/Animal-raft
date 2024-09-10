@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctdk6gh38vany"]
-
-[ext_resource type="Script" path="res://ark/ark.gd" id="1_hyjvb"]
-[ext_resource type="PackedScene" uid="uid://dchjls84gte1i" path="res://ark/cell.tscn" id="2_4853c"]
-
-[node name="Ark" type="Node2D"]
-script = ExtResource("1_hyjvb")
-cell_scen = ExtResource("2_4853c")

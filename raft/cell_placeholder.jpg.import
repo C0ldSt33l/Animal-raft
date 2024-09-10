@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw2sg04u6povg"
-path="res://.godot/imported/cell_placeholder.jpg-2f8449b74df18645a0392bf2ee166701.ctex"
+uid="uid://crthw1liws2mq"
+path="res://.godot/imported/cell_placeholder.jpg-a6950bba2de77828605be4de3997a30d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ark/cell_placeholder.jpg"
-dest_files=["res://.godot/imported/cell_placeholder.jpg-2f8449b74df18645a0392bf2ee166701.ctex"]
+source_file="res://raft/cell_placeholder.jpg"
+dest_files=["res://.godot/imported/cell_placeholder.jpg-a6950bba2de77828605be4de3997a30d.ctex"]
 
 [params]
 
