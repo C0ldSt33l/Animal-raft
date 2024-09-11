@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://5moaj3q465yq"]
 
-[ext_resource type="Script" path="res://raft/object_card.gd" id="1_56jkf"]
-[ext_resource type="Texture2D" uid="uid://xykxfrlygiph" path="res://raft/centre_cell.jpg" id="2_5abkp"]
+[ext_resource type="Script" path="res://raft_editor/ui elements/object_card.gd" id="1_2ktsi"]
+[ext_resource type="Texture2D" uid="uid://xykxfrlygiph" path="res://raft_editor/textures/centre_cell.jpg" id="2_5abkp"]
 
 [node name="Object card" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_56jkf")
+script = ExtResource("1_2ktsi")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0

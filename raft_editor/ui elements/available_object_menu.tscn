@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvl5sttc45as0"]
+
+[ext_resource type="Script" path="res://raft_editor/ui elements/available_object_menu.gd" id="1_qppse"]
+[ext_resource type="PackedScene" uid="uid://dr5f66qxncqiw" path="res://raft_editor/ui elements/object tab.tscn" id="2_cxwf8"]
+
+[node name="Available object menu" type="TabContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -570.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+script = ExtResource("1_qppse")
+
+[node name="Cells" parent="." instance=ExtResource("2_cxwf8")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Animals" parent="." instance=ExtResource("2_cxwf8")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Buildings" parent="." instance=ExtResource("2_cxwf8")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2

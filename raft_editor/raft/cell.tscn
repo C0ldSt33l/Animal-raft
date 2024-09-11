@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dchjls84gte1i"]
 
-[ext_resource type="Script" path="res://raft/cell.gd" id="1_6412g"]
-[ext_resource type="Texture2D" uid="uid://crthw1liws2mq" path="res://raft/cell_placeholder.jpg" id="1_wfqhq"]
+[ext_resource type="Texture2D" uid="uid://crthw1liws2mq" path="res://raft_editor/textures/cell_placeholder.jpg" id="1_wfqhq"]
+[ext_resource type="Script" path="res://raft_editor/raft/cell.gd" id="2_7t8nv"]
 
 [node name="Cell" type="TextureButton"]
 anchors_preset = -1
@@ -16,7 +16,7 @@ offset_bottom = 30.96
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("1_wfqhq")
-script = ExtResource("1_6412g")
+script = ExtResource("2_7t8nv")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

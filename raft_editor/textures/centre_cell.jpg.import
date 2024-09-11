@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1yfhn8du7hvp"
-path="res://.godot/imported/cell_placeholder2.jpg-1c9b737406b834dc9fdd7c7a54de3cfa.ctex"
+uid="uid://xykxfrlygiph"
+path="res://.godot/imported/centre_cell.jpg-7dc813bd68d4cb2e5c1223aede630687.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://raft/cell_placeholder2.jpg"
-dest_files=["res://.godot/imported/cell_placeholder2.jpg-1c9b737406b834dc9fdd7c7a54de3cfa.ctex"]
+source_file="res://raft_editor/textures/centre_cell.jpg"
+dest_files=["res://.godot/imported/centre_cell.jpg-7dc813bd68d4cb2e5c1223aede630687.ctex"]
 
 [params]
 

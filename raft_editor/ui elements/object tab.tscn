@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://dr5f66qxncqiw"]
 
-[ext_resource type="Script" path="res://raft/object_tab.gd" id="1_uxioh"]
+[ext_resource type="Script" path="res://raft_editor/ui elements/object_tab.gd" id="1_iiyrh"]
 
 [node name="ObjectTab" type="TabBar"]
-script = ExtResource("1_uxioh")
+script = ExtResource("1_iiyrh")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0

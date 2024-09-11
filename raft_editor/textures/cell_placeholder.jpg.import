@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crthw1liws2mq"
-path="res://.godot/imported/cell_placeholder.jpg-a6950bba2de77828605be4de3997a30d.ctex"
+path="res://.godot/imported/cell_placeholder.jpg-78c640887b92c2e135305a3faa8aeecc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://raft/cell_placeholder.jpg"
-dest_files=["res://.godot/imported/cell_placeholder.jpg-a6950bba2de77828605be4de3997a30d.ctex"]
+source_file="res://raft_editor/textures/cell_placeholder.jpg"
+dest_files=["res://.godot/imported/cell_placeholder.jpg-78c640887b92c2e135305a3faa8aeecc.ctex"]
 
 [params]
 

@@ -2,8 +2,7 @@ class_name ObjectCard
 extends Control
 
 
-const _scene := preload('res://raft/object_card.tscn')
-
+const _SCENE := preload('res://raft_editor/ui elements/object_card.tscn')
 const CARD_SIZE := Vector2i(70, 90)
 
 @onready var texture_rect := $"Panel/Object texture" as TextureRect

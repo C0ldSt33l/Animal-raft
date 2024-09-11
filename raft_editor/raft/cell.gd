@@ -12,9 +12,9 @@ const CELL_SIZE := Vector2i(64, 64)
 const CELL_HP_ARRAY: Array[int] = [3, 5]
 
 const TEXTURE_ARRAY: Array[Texture2D] = [
-	preload('res://raft/centre_cell.jpg'),
-	preload('res://raft/cell_placeholder.jpg'),
-	preload('res://raft/cell_placeholder2.jpg'),
+	preload('res://raft_editor/textures/centre_cell.jpg'),
+	preload('res://raft_editor/textures/cell_placeholder.jpg'),
+	preload('res://raft_editor/textures/cell_placeholder2.jpg'),
 	# preload(''),
 	# preload(''),
 ]
@@ -28,7 +28,7 @@ enum CELL_TEXTURE {
 	UPGRADED_WOOD_CELL,
 }
 
-const _scene := preload('res://raft/cell.tscn')
+const _SCENE := preload('res://raft_editor/raft/cell.tscn')
 
 static var VOID_CELL := create().apply({
 	'material_type': MATERIAL_TYPE.VOID,
@@ -92,7 +92,7 @@ func _draw() -> void:
 
 
 static func create() -> Cell:
-	var cell := _scene.instantiate() as Cell
+	var cell := _SCENE.instantiate() as Cell
 	return cell
 
 
