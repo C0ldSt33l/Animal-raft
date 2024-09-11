@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://5moaj3q465yq"]
+
+[ext_resource type="Script" path="res://raft/object_card.gd" id="1_56jkf"]
+[ext_resource type="Texture2D" uid="uid://xykxfrlygiph" path="res://raft/centre_cell.jpg" id="2_5abkp"]
+
+[node name="Object card" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_56jkf")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 70.0
+offset_bottom = 90.0
+
+[node name="Object texture" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -42.0
+offset_right = 32.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5abkp")
+
+[node name="Object name" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 3.0
+offset_top = 66.0
+offset_right = 67.0
+offset_bottom = 89.0
+text = "Center"
+horizontal_alignment = 1
+vertical_alignment = 1

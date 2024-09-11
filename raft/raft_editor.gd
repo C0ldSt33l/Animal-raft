@@ -2,9 +2,10 @@ extends Node2D
 
 
 var selected_raft_cell: Cell = null
-var selected_animal: Object = null
-var selected_building: Object = null
+var selected_object: Object = null
+
+@onready var raft := $Raft as Raft
 
 
 func _process(_delta: float) -> void:
-	pass
+	var new_cell := Cell.WOOD_CELL

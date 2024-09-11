@@ -33,22 +33,30 @@ const _scene := preload('res://raft/cell.tscn')
 static var VOID_CELL := create().apply({
 	'material_type': MATERIAL_TYPE.VOID,
 	'texture_normal': null,
-})
+}) :
+	get:
+		return VOID_CELL.duplicate()
 static var CENTERE_CELL := create().apply({
 	'material_type': MATERIAL_TYPE.VOID,
 	'texture_normal': TEXTURE_ARRAY[CELL_TEXTURE.CENTRE_CELL],
-})
+}) :
+	get:
+		return CENTERE_CELL.duplicate()
 static var BRANCH_CELL := create().apply({
 	'material_type': MATERIAL_TYPE.BRANCH,
 	'texture_normal': TEXTURE_ARRAY[CELL_TEXTURE.BRANCH_CELL],
-})
+}) :
+	get:
+		return BRANCH_CELL.duplicate()
 static var WOOD_CELL := create().apply({
 	'material_type': MATERIAL_TYPE.BRANCH,
 	'texture_normal': TEXTURE_ARRAY[CELL_TEXTURE.WOOD_CELL],
-})
-
+}) :
+	get:
+		return WOOD_CELL.duplicate()
 
 @export var health: int 
+# var pos_in_raft := Vector2i(0, 0)
 
 var store_unit: Object = null
 var material_type: MATERIAL_TYPE :
@@ -61,9 +69,8 @@ var material_type: MATERIAL_TYPE :
 var border_color := Color.BLACK
 
 
-func _ready() -> void:
-	#self.hide()
-	pass
+# func _ready() -> void:
+# 	self.hide()
 
 
 func _draw() -> void:
@@ -122,4 +129,5 @@ func _on_mouse_exited() -> void:
 
 
 func _on_pressed() -> void:
-	self.texture_normal = self.TEXTURE_ARRAY[1]
+	# self.texture_normal = self.TEXTURE_ARRAY[1]
+	pass

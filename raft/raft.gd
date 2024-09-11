@@ -16,17 +16,19 @@ func _ready() -> void:
 	var cur_pos := Vector2i.ZERO 
 	for row in range(self.ARRAY_SIZE.x):
 		for col in range(self.ARRAY_SIZE.y):
-			var cell := Cell.BRANCH_CELL.duplicate() as Cell
+			var cell := Cell.VOID_CELL
 			cell.position = cur_pos
-			self.cells.append(cell)
-			cur_pos.x += Cell.CELL_SIZE.x + 10
+			# cell.hide()
 
+			self.cells.append(cell)
 			self.add_child(cell)
+
+			cur_pos.x += Cell.CELL_SIZE.x + 10
 
 		cur_pos.y += Cell.CELL_SIZE.y + 10
 		cur_pos.x = 0
 		
-	self._make_cells_enabled([
+	self._make_cells_visible([
 		self.CENTRE_CELL_POS,
 
 		self.CENTRE_CELL_POS + Vector2i(1, 1),
@@ -41,13 +43,17 @@ func _ready() -> void:
 		self.CENTRE_CELL_POS + Vector2i(-1, 0),
 	])
 
-	self.replace_cell(self.CENTRE_CELL_POS, Cell.CENTERE_CELL.duplicate())
+	self.change_cell(self.CENTRE_CELL_POS, Cell.CENTERE_CELL)
 
 
-func change_cell(pos: Vector2i, new_cell: Cell) -> void:
-	print('pos: ', pos)
-	print('new cell: ', new_cell)
-	print('old cell: ', self.get_cell(pos))
+func change_cell(pos: Vector2i, cell: Cell) -> void:
+	var index := pos.x * self.ARRAY_SIZE.x + pos.y
+	cell.position =  self.cells[index].position
+
+	remove_child(self.cells[index])
+
+	self.cells[index] = cell
+	add_child(cell)
 
 
 func get_cell(pos: Vector2i) -> Cell:
@@ -61,16 +67,6 @@ func get_centre_cell() -> Cell:
 	return self.get_cell(self.CENTRE_CELL_POS)
 
 
-func replace_cell(pos: Vector2i, cell: Cell) -> void:
-	var index := pos.x * self.ARRAY_SIZE.x + pos.y
-	cell.position =  self.cells[index].position
-
-	remove_child(self.cells[index])
-
-	self.cells[index] = cell
-	add_child(cell)
-
-
 func _swap_cells(pos_1: Vector2i, pos_2: Vector2i) -> void:
 	var cell_1 := self.get_cell(pos_1)
 	var cell_2 := self.get_cell(pos_2)
@@ -80,7 +76,7 @@ func _swap_cells(pos_1: Vector2i, pos_2: Vector2i) -> void:
 	cell_2.position = tmp_pos
 
 
-func _make_cells_enabled(positions: Array[Vector2i]) -> void:
+func _make_cells_visible(positions: Array[Vector2i]) -> void:
 	for pos in positions:
 		var cell := self.get_cell(pos)
 		# cell.disabled = false

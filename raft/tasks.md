@@ -10,7 +10,7 @@
     [ ] visual marks (selected, future position and etc.)
 [ ] `Raft editor` scene
     [ ] description element
-    [ ] cell/building/animals inventary
+    [x] cell/building/animals inventary
     [ ] cell health indicator
 [ ] `Building` class
     [ ] storage
