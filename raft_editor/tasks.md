@@ -11,6 +11,7 @@
 [ ] `Raft editor` scene
     [ ] description element
     [x] cell/building/animals inventary
+    [ ] interaction between invetrary and raft cells
     [ ] cell health indicator
 [ ] `Building` class
     [ ] storage
