@@ -4,7 +4,7 @@ var Enemy_scene = preload("res://scenes/Enemy.tscn")
 var animal_scene = preload("res://Animals/animal.tscn")
 var Enemies = []
 var animals = []
-
+var tern: int = 0
 @onready var skills = $"/root/AnimalsSkill" 
 @onready var dmg = $TakenDamage as Label
 
@@ -42,6 +42,7 @@ func _ready() -> void:
 		animal._Name = 'Wolf'
 		animal._size = 3
 		animal.position = points2D[i]
+		animals.append(animal)
 		add_child(animal)
 		
 		animal.choosen_animal.connect(self._on_chosen_animal)
@@ -57,6 +58,7 @@ func _process(delta: float) -> void:
 	
 	dmg.text = "taken damage: " + str(TakenDamage) 
 	if chose_animal and chose_enemy!=null:
+		chose_animal.tmpCooldawn = chose_animal.Cooldawn
 		skills.FUNC_DIC[chose_animal.getName()][1].call(chose_enemy)
 		chose_animal = null
 		chose_enemy = null
@@ -71,3 +73,10 @@ func _on_chosen_enemy(Enemy: Variant) -> void:
 func _on_chosen_animal(Animal: Variant) -> void:
 	chose_animal = Animal # Replace with function body.
 	print('have animal')
+
+
+func _on_next_tern_pressed() -> void:
+	print('next tern')
+	tern+=1
+	for i:Animal in animals:
+		i.tmpCooldawn-=1# Replace with function body.

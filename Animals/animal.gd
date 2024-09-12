@@ -3,7 +3,9 @@ extends TextureButton
 
 @export var _Name: String = "Chicken"
 @export var _size: int = 0 
-@export var Cooldawn: int = 0
+@export var Cooldawn: int = 3
+var tmpCooldawn: int = 0
+
 
 @onready var sprite = $AnimatedSprite2D as AnimatedSprite2D
 @onready var skills = $"/root/AnimalsSkill" 
@@ -24,8 +26,12 @@ func _process(delta: float) -> void:
 
 func _on_pressed() -> void:
 	#emit_signal('ChosenAnimal',self)
-	self.choosen_animal.emit(self)
-	print('signal')
+	if self.tmpCooldawn == 0:
+#		tmpCooldawn = Cooldawn
+		self.choosen_animal.emit(self)
+		print('signal')
+	else:
+		print(tmpCooldawn)
 	
 func getName() -> String: 
 	return _Name

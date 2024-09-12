@@ -21,3 +21,4 @@ func _on_pressed() -> void:
 	#emit_signal('ChosenEnemy',self) # Replace with function body.
 func TakeDamage(value: int ) -> void:
 	HP-=value
+	#print(HP)
