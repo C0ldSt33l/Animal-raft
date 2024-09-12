@@ -1,5 +1,4 @@
 extends Node
-
 var FUNC_DIC := {
 	'Chicken': [Callable(self, 'Chicken_build_skill'), Callable(self, 'Chicken_attack_skill')],
 	'Crab': [Callable(self, 'Crab_build_skill'), Callable(self, 'Crab_attack_skill')],
@@ -22,6 +21,26 @@ var FUNC_DIC := {
 	
 }
 
+var Animal_Info :={
+	'Chicken':'do ko',
+	'Crab':'do ko',
+	'Toad':'do ko',
+	'Monkey':'do ko',
+	'Dog':'do ko',
+	'Cow':'do ko',
+	'Goose':'do ko',
+	'Gorilla':'do ko',
+	'Boar':'do ko',
+	'Moose':'do ko',
+	'Cat':'do ko',
+	'Goat':'do ko',
+	'Sheep':'do ko',
+	'Turtle':'do ko',
+	'Porcuoine':'do ko',
+	'Skunk':'kills the enemy',
+	'Wolf':'deals 4 damage',
+}
+
 func Chicken_build_skill():
 	print('ko')
 func Chicken_attack_skill(enemy:Enemy):
@@ -39,7 +58,7 @@ func Toad_attack_skill(enemy:Enemy):
 	
 func Monkey_build_skill():
 	print('Monkey')
-func Monkey_attack_skill(enemy:Enemy):
+func Monkey_attack_skill(enemy:Enemy): #Taken damage--
 	print('agressive Monkey')
 	
 func Pig_build_skill():
@@ -54,12 +73,12 @@ func Dog_attack_skill(enemy:Enemy):
 
 func Cow_build_skill():
 	print('moo')
-func Cow_attack_skill(enemy:Enemy):
+func Cow_attack_skill(enemy:Enemy): #add hp
 	print('agressive moo')
 	
 func Goose_build_skill():
 	print('its a GOOSE!')
-func Goose_attack_skill(enemy:Enemy):
+func Goose_attack_skill(enemy:Enemy): #can see all abilities
 	print('its a agressive GOOSE!')
 	
 func Gorilla_build_skill():
@@ -74,7 +93,7 @@ func Boar_attack_skill(enemy:Enemy):
 	
 func Moose_build_skill():
 	print('Moose')
-func Moose_attack_skill(enemy:Enemy):
+func Moose_attack_skill(enemy:Enemy): 
 	print('agressive Moose')
 	
 func Cat_build_skill():
@@ -94,7 +113,7 @@ func Sheep_attack_skill(enemy:Enemy):
 	
 func Turtle_build_skill():
 	print('turtle')
-func Turtle_attack_skill(enemy:Enemy):
+func Turtle_attack_skill(enemy:Enemy): #add more hp
 	print('turtle')
 	
 func Porcupine_build_skill():
@@ -105,10 +124,11 @@ func Porcupine_attack_skill(enemy:Enemy):
 func Skunk_build_skill():
 	print('Skunk')
 func Skunk_attack_skill(enemy:Enemy):
+	enemy.TakeDamage(enemy.HP)
 	print('Skunk attack')
 	
 func Wolf_build_skill():
 	print('woof')
 func Wolf_attack_skill(enemy:Enemy):
 	print('agressive woof')
-	enemy.Damage()
+	enemy.TakeDamage(4)

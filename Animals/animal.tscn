@@ -683,4 +683,12 @@ position = Vector2(20, 19)
 sprite_frames = SubResource("SpriteFrames_v6tt3")
 animation = &"Gorilla"
 
+[node name="Info" type="Popup" parent="."]
+
+[node name="Label" type="Label" parent="Info"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

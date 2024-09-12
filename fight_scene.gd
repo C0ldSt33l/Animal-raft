@@ -2,7 +2,6 @@ extends Node2D
 
 var Enemy_scene = preload("res://scenes/Enemy.tscn")
 var animal_scene = preload("res://Animals/animal.tscn")
-
 var Enemies = []
 var animals = []
 
