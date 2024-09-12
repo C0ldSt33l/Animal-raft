@@ -14,19 +14,29 @@ var cells: Array[Cell] = []
 
 func _ready() -> void:
 	var cur_pos := Vector2i.ZERO 
-	for row in range(self.ARRAY_SIZE.x):
-		for col in range(self.ARRAY_SIZE.y):
-			var cell := Cell.VOID_CELL
+	for row in range(self.ARRAY_SIZE.y):
+		for col in range(self.ARRAY_SIZE.x):
+			var cell := Cell.add_to_scene(self, Cell.TYPE.VOID)
 			cell.position = cur_pos
-			# cell.hide()
+			cell.pos_in_raft = Vector2i(col, row)
+			cell.hide()
 
 			self.cells.append(cell)
-			self.add_child(cell)
 
 			cur_pos.x += Cell.CELL_SIZE.x + 10
 
 		cur_pos.y += Cell.CELL_SIZE.y + 10
 		cur_pos.x = 0
+
+	var center := Cell.add_to_scene(self, Cell.TYPE.CENTER)
+	self.set_cell(
+		self.CENTRE_CELL_POS,
+		center	
+	)
+	self.set_cell(
+		Vector2i.ZERO,
+		center
+	)
 		
 	self._make_cells_visible([
 		self.CENTRE_CELL_POS,
@@ -43,41 +53,38 @@ func _ready() -> void:
 		self.CENTRE_CELL_POS + Vector2i(-1, 0),
 	])
 
-	self.change_cell(self.CENTRE_CELL_POS, Cell.CENTERE_CELL)
-
-
-func change_cell(pos: Vector2i, cell: Cell) -> void:
-	var index := pos.x * self.ARRAY_SIZE.x + pos.y
-	cell.position =  self.cells[index].position
-
-	remove_child(self.cells[index])
-
-	self.cells[index] = cell
-	add_child(cell)
-
 
 func get_cell(pos: Vector2i) -> Cell:
-	var line := pos.x * self.ARRAY_SIZE.x
-	var col := pos.y
+	var index := self._coord_to_index(pos)
 
-	return self.cells[line + col]
+	return self.cells[index]
+
+
+func set_cell(pos: Vector2i, new_cell: Cell, offset: Vector2 = Vector2.ZERO) -> void:
+	var index := self._coord_to_index(pos)
+	var old_cell := self.cells[index]
+
+	new_cell.position = old_cell.position + offset
+	new_cell.pos_in_raft = old_cell.pos_in_raft
+	new_cell.is_handle_mouse = true
+
+	self.cells[index] = new_cell
+	self.remove_child(old_cell)
 
 
 func get_centre_cell() -> Cell:
 	return self.get_cell(self.CENTRE_CELL_POS)
 
 
-func _swap_cells(pos_1: Vector2i, pos_2: Vector2i) -> void:
-	var cell_1 := self.get_cell(pos_1)
-	var cell_2 := self.get_cell(pos_2)
-
-	var tmp_pos := cell_1.position
-	cell_1.position = cell_2.position
-	cell_2.position = tmp_pos
-
-
 func _make_cells_visible(positions: Array[Vector2i]) -> void:
 	for pos in positions:
 		var cell := self.get_cell(pos)
-		# cell.disabled = false
 		cell.show()
+		cell.is_handle_mouse = true
+
+
+func _coord_to_index(pos: Vector2i) -> int:
+	var x := pos.x
+	var y := pos.y * self.ARRAY_SIZE.y
+
+	return x + y

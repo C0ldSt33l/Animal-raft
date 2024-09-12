@@ -23,10 +23,6 @@ var text: String :
 		return self.name_label.text
 
 
-func _ready() -> void:
-	print("it's fucking joke! FUCK FUCK FUCK FUCK FUCK FUCK FUCK")
-
-
 func setup(name: String, texture: Texture2D) -> void:
 	self.text = name
 	self.texture = texture
@@ -45,4 +41,4 @@ func _on_panel_mouse_exited() -> void:
 func _on_panel_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.is_action_pressed('click'):
-			self.selected_object.emit()
+			self.selected_object.emit(self.text)

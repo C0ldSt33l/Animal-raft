@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crthw1liws2mq"
-path="res://.godot/imported/cell_placeholder.jpg-78c640887b92c2e135305a3faa8aeecc.ctex"
+uid="uid://ctpngpyhgv2h1"
+path="res://.godot/imported/branch_cell.jpg-8fa89f47a33361d8ecc3bf0b541a3825.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://raft_editor/textures/cell_placeholder.jpg"
-dest_files=["res://.godot/imported/cell_placeholder.jpg-78c640887b92c2e135305a3faa8aeecc.ctex"]
+source_file="res://raft_editor/textures/branch_cell.jpg"
+dest_files=["res://.godot/imported/branch_cell.jpg-8fa89f47a33361d8ecc3bf0b541a3825.ctex"]
 
 [params]
 

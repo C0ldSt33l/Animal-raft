@@ -13,6 +13,7 @@ mouse_filter = 2
 script = ExtResource("1_2ktsi")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_right = 70.0
 offset_bottom = 90.0
 

@@ -20,5 +20,5 @@ func add_cards(data: Dictionary) -> void:
 		card.setup(name, data[name])
 
 
-func get_cards() -> Array[ObjectCard]:
-	return self.get_children() as Array[ObjectCard]
+func get_cards() -> Array:
+	return self._obj_container.get_children()

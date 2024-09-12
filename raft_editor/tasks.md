@@ -20,3 +20,6 @@
     [ ] tether
     [ ] shack
     [ ] tent
+
+[ ] add step by step access to cells
+[ ] add upgrade system for cells

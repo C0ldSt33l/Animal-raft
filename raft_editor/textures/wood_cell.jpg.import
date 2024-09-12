@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1yfhn8du7hvp"
-path="res://.godot/imported/cell_placeholder2.jpg-c152be6c71af3c8af2f2d12b829196bf.ctex"
+uid="uid://bdbvpqrqbisth"
+path="res://.godot/imported/wood_cell.jpg-9cb5ef9fbd9c650b324d0d8bdbb0778a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://raft_editor/textures/cell_placeholder2.jpg"
-dest_files=["res://.godot/imported/cell_placeholder2.jpg-c152be6c71af3c8af2f2d12b829196bf.ctex"]
+source_file="res://raft_editor/textures/wood_cell.jpg"
+dest_files=["res://.godot/imported/wood_cell.jpg-9cb5ef9fbd9c650b324d0d8bdbb0778a.ctex"]
 
 [params]
 

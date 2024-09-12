@@ -1,133 +1,110 @@
 class_name Cell
-extends TextureButton
+extends Node2D
 
 
-enum MATERIAL_TYPE {
+signal cell_has_no_empty_space()
+
+enum TYPE {
 	VOID = -1,
+	CENTER,
 	BRANCH,
 	WOOD,
+	UPGRADED_BRANCH,
+	UPGRADED_WOOD,
 }
 
 const CELL_SIZE := Vector2i(64, 64)
-const CELL_HP_ARRAY: Array[int] = [3, 5]
+const CELL_HP_ARRAY: Array[int] = [INF, 3, 5, 5, 7]
 
 const TEXTURE_ARRAY: Array[Texture2D] = [
 	preload('res://raft_editor/textures/centre_cell.jpg'),
-	preload('res://raft_editor/textures/cell_placeholder.jpg'),
-	preload('res://raft_editor/textures/cell_placeholder2.jpg'),
+	preload('res://raft_editor/textures/branch_cell.jpg'),
+	preload('res://raft_editor/textures/wood_cell.jpg'),
 	# preload(''),
 	# preload(''),
 ]
 
-enum CELL_TEXTURE {
-	VOID_CELL = -1,
-	CENTRE_CELL,
-	BRANCH_CELL,
-	WOOD_CELL,
-	UPGRADED_BRANCH_CELL,
-	UPGRADED_WOOD_CELL,
-}
-
 const _SCENE := preload('res://raft_editor/raft/cell.tscn')
 
-static var VOID_CELL := create().apply({
-	'material_type': MATERIAL_TYPE.VOID,
-	'texture_normal': null,
-}) :
-	get:
-		return VOID_CELL.duplicate()
-static var CENTERE_CELL := create().apply({
-	'material_type': MATERIAL_TYPE.VOID,
-	'texture_normal': TEXTURE_ARRAY[CELL_TEXTURE.CENTRE_CELL],
-}) :
-	get:
-		return CENTERE_CELL.duplicate()
-static var BRANCH_CELL := create().apply({
-	'material_type': MATERIAL_TYPE.BRANCH,
-	'texture_normal': TEXTURE_ARRAY[CELL_TEXTURE.BRANCH_CELL],
-}) :
-	get:
-		return BRANCH_CELL.duplicate()
-static var WOOD_CELL := create().apply({
-	'material_type': MATERIAL_TYPE.BRANCH,
-	'texture_normal': TEXTURE_ARRAY[CELL_TEXTURE.WOOD_CELL],
-}) :
-	get:
-		return WOOD_CELL.duplicate()
+@onready var texture_button := $TextureButton as TextureButton
 
-@export var health: int 
+var _health: int 
 # var pos_in_raft := Vector2i(0, 0)
 
 var store_unit: Object = null
-var material_type: MATERIAL_TYPE :
+var type: TYPE :
 	set(value):
-		material_type = value
-		if value == MATERIAL_TYPE.VOID:
-			return
-		health = CELL_HP_ARRAY[value]
+		type = value
+		self._health = CELL_HP_ARRAY[value]
 
 var border_color := Color.BLACK
+var texture: Texture2D:
+	set(value):
+		self.texture_button.texture_normal = value
+	get:
+		return self.texture_button.texture_normal	
+
+var is_mouse_inside := false
+var pos_in_raft := Vector2i(-1, -1)
+var is_handle_mouse: bool :
+	set(value):
+		var filter := Control.MOUSE_FILTER_STOP if value else Control.MOUSE_FILTER_IGNORE
+		self.texture_button.mouse_filter = filter
 
 
-# func _ready() -> void:
-# 	self.hide()
+func _ready() -> void:
+	if (self.type == TYPE.VOID):
+		self.texture = null
+	else:
+		self.texture = self.TEXTURE_ARRAY[self.type]
+
+	self.is_handle_mouse = false
 
 
 func _draw() -> void:
-	#if self.disabled:
-		#return
-
 	const width := 4.0
 
 	var rect := Rect2(Vector2.ZERO, self.CELL_SIZE)
-	# rect.size.x -= width
-	# rect.size.y -= width
 	rect.position += Vector2(width, width) / 2
 	
 	draw_rect(rect, self.border_color, false, width)
-	#draw_texture(self.texture_normal, Vector2i(500, 500))
 
 	if self.store_unit:
 		self.store_unit._draw()
 
 
-static func create() -> Cell:
-	var cell := _SCENE.instantiate() as Cell
-	return cell
-
-
 func attach_unit(unit: Object) -> void:
+	if !self.store_unit:
+		self.cell_has_no_empty_space.emit()
+		return
+	
 	print('unit is attached')
 	self.store_unit = unit
 
 
-func apply(properties: Dictionary) -> Cell:
-	for prop in properties:
-		self[prop] = properties[prop]
-
-	return self 
-
-
 func upgrade() -> void:
-	match self.material_type:
-		MATERIAL_TYPE.BRANCH:
+	match self.type:
+		TYPE.BRANCH:
 			pass
-		MATERIAL_TYPE.WOOD:
+		TYPE.WOOD:
 			pass
 		_:
 			print('this cell cant be upgraded')
 
 
-func _on_mouse_entered() -> void:
-	print('description is showed')
-	self.border_color = Color.RED
+static func add_to_scene(scene: Node, type: TYPE) -> Cell:
+	var cell := _SCENE.instantiate() as Cell
+	cell.type = type
+	scene.add_child(cell)
+
+	return cell
 
 
-func _on_mouse_exited() -> void:
-	print('description is hided')
-	self.border_color = Color.BLACK
+func _on_texture_button_mouse_entered() -> void:
+	print('mouse enter in cell at ', self.pos_in_raft)
+	self.is_mouse_inside = true
 
 
-func _on_pressed() -> void:
-	# self.texture_normal = self.TEXTURE_ARRAY[1]
-	pass
+func _on_texture_button_mouse_exited() -> void:
+	print('mouse exit from cell at ', self.pos_in_raft)
+	self.is_mouse_inside = false
