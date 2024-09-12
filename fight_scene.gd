@@ -13,6 +13,8 @@ var chose_animal
 
 signal ChosenEnemy(enemy)
 var chose_enemy
+var cooldown
+var tmp_cooldown
 
 var TakenDamage: int  = 0
 
@@ -35,27 +37,37 @@ var points2D = [
 ]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in 15:
-		var animal = animal_scene.instantiate()
-		animal._Name = 'Gorilla'
+	for i in 13:
+		var animal := animal_scene.instantiate() as Animal
+		animal._Name = 'Wolf'
 		animal._size = 3
 		animal.position = points2D[i]
 		add_child(animal)
-	 # Replace with function body.
+		
+		animal.choosen_animal.connect(self._on_chosen_animal)
+	for i in range(13,15):
+		var enemy := Enemy_scene.instantiate() as Enemy
+		add_child(enemy)
+		enemy.chosen_enemy.connect(self._on_chosen_enemy)
+		enemy.position = points2D[i]
 
 #тут будет уменьшение кулдауна всем животным в конце хода
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
 	dmg.text = "taken damage: " + str(TakenDamage) 
-	if chose_animal and chose_enemy:
-		skills.FUNC_DIC[chose_animal.getName][1].call(chose_enemy)
+	if chose_animal and chose_enemy!=null:
+		skills.FUNC_DIC[chose_animal.getName()][1].call(chose_enemy)
+		chose_animal = null
+		chose_enemy = null
 
 
-func _on_chosen_enemy(enemy: Variant) -> void:
-	chose_enemy = enemy
+func _on_chosen_enemy(Enemy: Variant) -> void:
+	chose_enemy = Enemy
+	print('have enemy')
 	 # Replace with function body.
 
 
 func _on_chosen_animal(Animal: Variant) -> void:
 	chose_animal = Animal # Replace with function body.
+	print('have animal')

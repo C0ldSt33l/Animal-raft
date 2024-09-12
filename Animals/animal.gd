@@ -10,6 +10,8 @@ extends TextureButton
 @onready var info = $Info
 @onready var info_label = $Info/Label
 
+signal choosen_animal(animal: Animal)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	sprite.play(_Name)
@@ -21,7 +23,8 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_pressed() -> void:
-	emit_signal('ChosenAnial',self)
+	#emit_signal('ChosenAnimal',self)
+	self.choosen_animal.emit(self)
 	print('signal')
 	
 func getName() -> String: 
