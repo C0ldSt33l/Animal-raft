@@ -71,4 +71,18 @@ sprite_frames = SubResource("SpriteFrames_35su3")
 animation = &"Idle"
 autoplay = "Idle"
 
+[node name="HP" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 62.0
+offset_right = 61.0
+offset_bottom = 85.0
+horizontal_alignment = 1
+
+[node name="Attack" type="Label" parent="."]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 40.0
+offset_bottom = 39.0
+
 [connection signal="pressed" from="." to="." method="_on_pressed"]

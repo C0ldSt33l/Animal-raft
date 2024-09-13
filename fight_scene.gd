@@ -7,14 +7,15 @@ var animals = []
 var tern: int = 0
 @onready var skills = $"/root/AnimalsSkill" 
 @onready var dmg = $TakenDamage as Label
+@onready var Energy = $Energy as Label
 
 signal ChosenAnimal(Animal) 
 var chose_animal
 
 signal ChosenEnemy(enemy)
 var chose_enemy
-var cooldown
-var tmp_cooldown
+var fullEnergy: int = 5
+var tmpEnergy: int = 0
 
 var TakenDamage: int  = 0
 
@@ -37,6 +38,7 @@ var points2D = [
 ]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	tmpEnergy = fullEnergy
 	for i in 13:
 		var animal := animal_scene.instantiate() as Animal
 		animal._Name = 'Wolf'
@@ -55,9 +57,12 @@ func _ready() -> void:
 #тут будет уменьшение кулдауна всем животным в конце хода
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
+	#labels
 	dmg.text = "taken damage: " + str(TakenDamage) 
-	if chose_animal and chose_enemy!=null:
+	Energy.text = "Energy: " + str(tmpEnergy)
+	#fight 
+	if chose_animal and chose_enemy!=null and tmpEnergy>=0:
+		tmpEnergy-= 1
 		chose_animal.tmpCooldawn = chose_animal.Cooldawn
 		skills.FUNC_DIC[chose_animal.getName()][1].call(chose_enemy)
 		chose_animal = null
@@ -78,5 +83,7 @@ func _on_chosen_animal(Animal: Variant) -> void:
 func _on_next_tern_pressed() -> void:
 	print('next tern')
 	tern+=1
+	tmpEnergy = fullEnergy
 	for i:Animal in animals:
-		i.tmpCooldawn-=1# Replace with function body.
+			if i.tmpCooldawn>0:
+				i.tmpCooldawn-=1# Replace with function body.

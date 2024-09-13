@@ -16,6 +16,11 @@ offset_top = 663.0
 offset_right = 1280.0
 offset_bottom = 724.0
 
+[node name="Energy" type="Label" parent="."]
+offset_left = 478.0
+offset_right = 518.0
+offset_bottom = 23.0
+
 [connection signal="ChosenAnimal" from="." to="." method="_on_chosen_animal"]
 [connection signal="ChosenEnemy" from="." to="." method="_on_chosen_enemy"]
 [connection signal="pressed" from="NextTern" to="." method="_on_next_tern_pressed"]
