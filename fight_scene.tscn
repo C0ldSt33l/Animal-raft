@@ -21,6 +21,13 @@ offset_left = 478.0
 offset_right = 518.0
 offset_bottom = 23.0
 
+[node name="win" type="Popup" parent="."]
+
+[node name="Label" type="Label" parent="win"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "You win"
+
 [connection signal="ChosenAnimal" from="." to="." method="_on_chosen_animal"]
 [connection signal="ChosenEnemy" from="." to="." method="_on_chosen_enemy"]
 [connection signal="pressed" from="NextTern" to="." method="_on_next_tern_pressed"]

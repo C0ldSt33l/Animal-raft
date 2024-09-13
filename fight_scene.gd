@@ -5,9 +5,12 @@ var animal_scene = preload("res://Animals/animal.tscn")
 var Enemies = []
 var animals = []
 var tern: int = 0
+var win: bool = true
 @onready var skills = $"/root/AnimalsSkill" 
 @onready var dmg = $TakenDamage as Label
 @onready var Energy = $Energy as Label
+@onready var Win = $win as Popup
+
 
 signal ChosenAnimal(Animal) 
 var chose_animal
@@ -48,16 +51,18 @@ func _ready() -> void:
 		add_child(animal)
 		
 		animal.choosen_animal.connect(self._on_chosen_animal)
-	for i in range(13,15):
+	for i in range(14,15):
 		var enemy := Enemy_scene.instantiate() as Enemy
 		add_child(enemy)
 		enemy.chosen_enemy.connect(self._on_chosen_enemy)
 		enemy.position = points2D[i]
+		Enemies.append(enemy)
 
 #тут будет уменьшение кулдауна всем животным в конце хода
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#labels
+	win = true
 	dmg.text = "taken damage: " + str(TakenDamage) 
 	Energy.text = "Energy: " + str(tmpEnergy)
 	#fight 
@@ -67,6 +72,9 @@ func _process(delta: float) -> void:
 		skills.FUNC_DIC[chose_animal.getName()][1].call(chose_enemy)
 		chose_animal = null
 		chose_enemy = null
+
+	if Enemies.is_empty():
+		Win.popup_centered()
 
 
 func _on_chosen_enemy(Enemy: Variant) -> void:
