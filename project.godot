@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 Settings="*res://SettingsConf.gd"
 AnimalsSkill="*res://Animals/Animals_skill.gd"
-FightScene="*res://fight_scene.tscn"
 
 [display]
 

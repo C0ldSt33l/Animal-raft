@@ -72,11 +72,14 @@ func _process(delta: float) -> void:
 		skills.FUNC_DIC[chose_animal.getName()][1].call(chose_enemy)
 		chose_animal = null
 		chose_enemy = null
-	
-	if Enemies.is_empty():
+		
+	for i in range(Enemies.size()):
+		if Enemies[i] != null:
+			win = false
+			break
+	if win:
 		Win.popup_centered()
-
-
+		queue_free()	
 func _on_chosen_enemy(Enemy: Variant) -> void:
 	chose_enemy = Enemy
 	print('have enemy')
@@ -95,6 +98,6 @@ func _on_next_tern_pressed() -> void:
 	for i:Animal in animals:
 			if i.tmpCooldawn>0:
 				i.tmpCooldawn-=1
-				
+
 	for i:Enemy in Enemies:
 			TakenDamage+=i.attack
