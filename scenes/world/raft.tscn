@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dlqvb2msryqd"]
 
 [ext_resource type="Texture2D" uid="uid://b4ygetdkhdcx0" path="res://images/raft_temp.png" id="1_110fk"]
-[ext_resource type="Script" path="res://scripts/raft.gd" id="1_oa3si"]
+[ext_resource type="Script" path="res://scenes/world/raft.gd" id="1_oa3si"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_83sxr"]
 size = Vector2(128, 128)

@@ -7,7 +7,7 @@ enum WINDOW_MODE {
 	WINDOWED,
 }
 const RESOLUTION_DIC: Dictionary = {
-	"640x480": Vector2i(640, 480),
+	"1280x720": Vector2i(1280, 720),
 	"1080x840": Vector2i(1080, 840),
 	"1920x1080": Vector2i(1920, 1080),
 }
@@ -20,15 +20,15 @@ var music_volume: int = 100
 var sfx_volume: int = 100
 
 
-func _ready() -> void:
-	# print(self.get_property_list())
-	self._print_settings()
-	if !FileAccess.file_exists(self.SAVE_FILE_PATH):
-		self._set_default()
-		self.save_settings()
-	else:
-		self.load_settings()
-		self._print_settings()
+#func _ready() -> void:
+	## print(self.get_property_list())
+	#self._print_settings()
+	#if !FileAccess.file_exists(self.SAVE_FILE_PATH):
+		#self._set_default()
+		#self.save_settings()
+	#else:
+		#self.load_settings()
+		#self._print_settings()
 
 
 
