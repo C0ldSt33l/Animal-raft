@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://bp3md7p7xaaxw" path="res://tilesets/ocean_tileset.tres" id="1_7x6j4"]
 [ext_resource type="Script" path="res://scenes/world/tml_ocean.gd" id="2_8okxj"]
 [ext_resource type="PackedScene" uid="uid://dlqvb2msryqd" path="res://scenes/world/raft.tscn" id="3_2plxs"]
-[ext_resource type="PackedScene" uid="uid://b2olrhivflsdo" path="res://scenes/left_bar.tscn" id="4_yvrxw"]
+[ext_resource type="PackedScene" path="res://scenes/left_bar.tscn" id="4_yvrxw"]
 
 [node name="WorldScene" type="Node2D"]
 

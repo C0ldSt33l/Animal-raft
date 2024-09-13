@@ -21,12 +21,12 @@ func _ready() -> void:
 	sids.resize(cell_count)
 	for i in range(cell_count):
 		sids[i] = self.get_cell_source_id(tiles[i])
-	raft_pos = %Raft.position
-	ocean_last_pos = %Raft.position
+	#raft_pos = %Raft.position
+	#ocean_last_pos = %Raft.position
 	
 func _process(delta: float) -> void:
 	ocean_animation_process(delta)
-	update_ocean_position()
+	#update_ocean_position()
 	
 func ocean_animation_process(delta: float) -> void:
 	timer += delta
@@ -39,21 +39,3 @@ func ocean_animation_process(delta: float) -> void:
 			@warning_ignore("integer_division")
 			var coord = Vector2i(cframe % tiles_columns, cframe / tiles_columns)
 			self.set_cell(tiles[i], sids[i], coord)
-
-func update_ocean_position() -> void:
-	var raft_delta = %Raft.position - ocean_last_pos
-	var dx:int = raft_delta.x
-	var dy:int = raft_delta.y
-	
-	if int(dx / 128) > 0:
-		position.x += 128
-		ocean_last_pos.x += 128
-	if int(dx / 128) < 0:
-		position.x -= 128
-		ocean_last_pos.x -= 128
-	if int(dy / 128) > 0:
-		position.y += 128
-		ocean_last_pos.y += 128
-	if int(dy / 128) < 0:
-		position.y -= 128
-		ocean_last_pos.y -= 128
