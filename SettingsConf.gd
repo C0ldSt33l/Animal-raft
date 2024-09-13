@@ -7,7 +7,7 @@ enum WINDOW_MODE {
 	WINDOWED,
 }
 const RESOLUTION_DIC: Dictionary = {
-	"640x480": Vector2i(640, 480),
+	"1280x720": Vector2i(1280, 720),
 	"1080x840": Vector2i(1080, 840),
 	"1920x1080": Vector2i(1920, 1080),
 }
@@ -21,7 +21,6 @@ var sfx_volume: int = 100
 
 var is_run := false
 
-
 func _ready() -> void:
 	if !is_run:
 		return
@@ -33,8 +32,6 @@ func _ready() -> void:
 	else:
 		self.load_settings()
 		self._print_settings()
-
-
 
 func save_settings() -> void:
 	print('Save settings')

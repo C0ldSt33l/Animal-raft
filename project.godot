@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Settings="*res://SettingsConf.gd"
+RaftData="*res://global_scripts/raft_data.gd"
+TimeData="*res://global_scripts/time_data.gd"
 
 [display]
 
