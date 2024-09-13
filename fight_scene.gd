@@ -44,7 +44,7 @@ func _ready() -> void:
 	skills.tmpEnergy = fullEnergy
 	for i in 13:
 		var animal := animal_scene.instantiate() as Animal
-		animal._Name = 'Moose'
+		animal._Name = 'Crab'
 		animal._size = 3
 		animal.position = points2D[i]
 		animals.append(animal)
@@ -81,7 +81,8 @@ func _process(delta: float) -> void:
 			chose_animal.getName() == 'Chicken' or
 			chose_animal.getName() == 'Cow' or
 			chose_animal.getName() == 'Turtle' or
-			chose_animal.getName() == 'Monkey'
+			chose_animal.getName() == 'Monkey'or
+			chose_animal.getName() == 'Crab' 
 			): 
 			skills.FUNC_DIC[chose_animal.getName()][1].call(chose_enemy)
 		skills.tmpEnergy-= 1
@@ -127,11 +128,12 @@ func _on_next_tern_pressed() -> void:
 	for i:Animal in animals:
 			if i.tmpCooldawn>0:
 				i.tmpCooldawn-=1
-
-	for i:Enemy in Enemies:
-		if i == null:
-			continue
-		if !i.stun:
-			skills.TakenDamage+=i.attack
-		if i.stun:
-			i.stun = false
+	if !skills.ignore_damage:
+		for i:Enemy in Enemies:
+			if i == null:
+				continue
+			if !i.stun:
+				skills.TakenDamage+=i.attack
+			if i.stun:
+				i.stun = false
+		skills.ignore_damage = false

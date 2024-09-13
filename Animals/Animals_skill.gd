@@ -1,5 +1,5 @@
 extends Node
-
+var ignore_damage: bool = false
 var tmpEnergy: int = 0:
 	set(value):
 		if value<0: 
@@ -37,7 +37,7 @@ var FUNC_DIC := {
 
 var Animal_Info :={
 	'Chicken':'ad 1 energy',
-	'Crab':'do ko',
+	'Crab':'ignore all damage on this tern',
 	'Toad':'do ko',
 	'Monkey':'heal 8 hp',
 	'Dog':'deals 3 damage',
@@ -63,6 +63,7 @@ func Chicken_attack_skill(enemy:Enemy):
 func Crab_build_skill():
 	print('clacking')
 func Crab_attack_skill(enemy:Enemy):
+	ignore_damage = true 
 	print('agressive clacking')
 	
 func Toad_build_skill():
