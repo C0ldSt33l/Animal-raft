@@ -6,6 +6,8 @@ signal chosen_enemy(enemy: Enemy)
 @onready var hp_label = $HP as Label
 @onready var attack_label = $Attack as Label
 
+var stun = false 
+
 var is_death = false
 var attack :int = 5
 # Called when the node enters the scene tree for the first time.

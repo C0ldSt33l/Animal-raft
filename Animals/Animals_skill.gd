@@ -1,4 +1,18 @@
 extends Node
+
+var tmpEnergy: int = 0:
+	set(value):
+		if value<0: 
+			tmpEnergy = 0
+		else:
+			tmpEnergy = value  
+var TakenDamage: int  = 0: #урон плота
+	set(value):
+		if value<0: 
+			TakenDamage = 0
+		else:
+			TakenDamage = value  
+
 var FUNC_DIC := {
 	'Chicken': [Callable(self, 'Chicken_build_skill'), Callable(self, 'Chicken_attack_skill')],
 	'Crab': [Callable(self, 'Crab_build_skill'), Callable(self, 'Crab_attack_skill')],
@@ -22,29 +36,29 @@ var FUNC_DIC := {
 }
 
 var Animal_Info :={
-	'Chicken':'do ko',
+	'Chicken':'ad 1 energy',
 	'Crab':'do ko',
 	'Toad':'do ko',
-	'Monkey':'do ko',
-	'Dog':'do ko',
-	'Cow':'do ko',
+	'Monkey':'heal 8 hp',
+	'Dog':'deals 3 damage',
+	'Cow':'add 2 energy',
 	'Goose':'do ko',
-	'Gorilla':'do ko',
-	'Boar':'do ko',
-	'Moose':'do ko',
-	'Cat':'do ko',
+	'Gorilla':'Stun Enemy and deal 10 damage',
+	'Boar':'Stun Enemy and deal 2 damage',
+	'Moose':'deal 5 damage for all Enemies but not kill they and spend spend 2 energy',
+	'Cat':'deals 3 damage',
 	'Goat':'do ko',
 	'Sheep':'do ko',
-	'Turtle':'do ko',
-	'Porcuoine':'do ko',
+	'Turtle':'heal 4 hp',
+	'Porcuoine':'deal 1 damage for all Enemies but not kill they',
 	'Skunk':'kills the enemy',
-	'Wolf':'deals 4 damage',
+	'Wolf':'deals 5 damage',
 }
 
 func Chicken_build_skill():
 	print('ko')
 func Chicken_attack_skill(enemy:Enemy):
-	print('agressive ko')
+	tmpEnergy+=2
 	
 func Crab_build_skill():
 	print('clacking')
@@ -58,7 +72,8 @@ func Toad_attack_skill(enemy:Enemy):
 	
 func Monkey_build_skill():
 	print('Monkey')
-func Monkey_attack_skill(enemy:Enemy): #Taken damage--
+func Monkey_attack_skill(enemy:Enemy):
+	TakenDamage-=8 #Taken damage--
 	print('agressive Monkey')
 	
 func Pig_build_skill():
@@ -68,13 +83,14 @@ func Pig_attack_skill(enemy:Enemy):
 
 func Dog_build_skill():
 	print('barking')
-func Dog_attack_skill(enemy:Enemy):
+func Dog_attack_skill(enemy:Enemy):  #standart
+	enemy.TakeDamage(3)
 	print('barking')
 
 func Cow_build_skill():
 	print('moo')
 func Cow_attack_skill(enemy:Enemy): #add hp
-	print('agressive moo')
+	tmpEnergy+=3
 	
 func Goose_build_skill():
 	print('its a GOOSE!')
@@ -84,12 +100,14 @@ func Goose_attack_skill(enemy:Enemy): #can see all abilities
 func Gorilla_build_skill():
 	print('Gorilla')
 func Gorilla_attack_skill(enemy:Enemy):
-	print('agressive Gorilla')
+	enemy.stun = true
+	enemy.HP-=10
 	
 func Boar_build_skill():
 	print('boar')
 func Boar_attack_skill(enemy:Enemy):
-	print('hard boar')
+	enemy.stun = true
+	enemy.HP-=2
 	
 func Moose_build_skill():
 	print('Moose')
@@ -98,7 +116,8 @@ func Moose_attack_skill(enemy:Enemy):
 	
 func Cat_build_skill():
 	print('meowing')
-func Cat_attack_skill(enemy:Enemy):
+func Cat_attack_skill(enemy:Enemy): #standart
+	enemy.TakeDamage(3)
 	print('scream')
 	
 func Goat_build_skill():
@@ -114,7 +133,7 @@ func Sheep_attack_skill(enemy:Enemy):
 func Turtle_build_skill():
 	print('turtle')
 func Turtle_attack_skill(enemy:Enemy): #add more hp
-	print('turtle')
+	TakenDamage-=4
 	
 func Porcupine_build_skill():
 	print('Porcupine')
@@ -131,4 +150,4 @@ func Wolf_build_skill():
 	print('woof')
 func Wolf_attack_skill(enemy:Enemy):
 	print('agressive woof')
-	enemy.TakeDamage(4)
+	enemy.TakeDamage(5)

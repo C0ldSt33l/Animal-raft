@@ -18,9 +18,9 @@ var chose_animal
 signal ChosenEnemy(enemy)
 var chose_enemy
 var fullEnergy: int = 5
-var tmpEnergy: int = 0
 
-var TakenDamage: int  = 0
+
+
 
 var points2D = [
 	Vector2i(360,250),
@@ -41,10 +41,10 @@ var points2D = [
 ]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	tmpEnergy = fullEnergy
+	skills.tmpEnergy = fullEnergy
 	for i in 13:
 		var animal := animal_scene.instantiate() as Animal
-		animal._Name = 'Skunk'
+		animal._Name = 'Moose'
 		animal._size = 3
 		animal.position = points2D[i]
 		animals.append(animal)
@@ -63,23 +63,52 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#labels
 	win = true
-	dmg.text = "taken damage: " + str(TakenDamage) 
-	Energy.text = "Energy: " + str(tmpEnergy)
+	dmg.text = "taken damage: " + str(skills.TakenDamage) 
+	Energy.text = "Energy: " + str(skills.tmpEnergy)
 	#fight 
-	if chose_animal and chose_enemy!=null and tmpEnergy>=0:
-		tmpEnergy-= 1
+	if chose_animal  and skills.tmpEnergy >= 0:
+		if chose_animal.getName() == 'Porcupine':
+			for i in range(Enemies.size()):
+				if Enemies[i].HP>1:
+					Enemies[i].HP-=1
+		elif chose_animal.getName() == 'Moose':
+			for i in range(Enemies.size()):
+					Enemies[i].HP-=5
+					if Enemies[i].HP<=0: 
+						Enemies[i]=1 
+			skills.tmpEnergy-= 1
+		elif(
+			chose_animal.getName() == 'Chicken' or
+			chose_animal.getName() == 'Cow' or
+			chose_animal.getName() == 'Turtle' or
+			chose_animal.getName() == 'Monkey'
+			): 
+			skills.FUNC_DIC[chose_animal.getName()][1].call(chose_enemy)
+		skills.tmpEnergy-= 1
+		chose_animal.tmpCooldawn = chose_animal.Cooldawn	
+		chose_animal = null
+	if chose_animal and chose_enemy and skills.tmpEnergy>=0:
 		chose_animal.tmpCooldawn = chose_animal.Cooldawn
 		skills.FUNC_DIC[chose_animal.getName()][1].call(chose_enemy)
+			
+		if chose_enemy.HP <= 0:	
+			for i in range(Enemies.size()):
+				if Enemies[i] == chose_enemy:
+					Enemies.remove_at(i)
+					break
+					
+			skills.tmpEnergy-= 1
+			
 		chose_animal = null
 		chose_enemy = null
+			
 		
 	for i in range(Enemies.size()):
 		if Enemies[i] != null:
 			win = false
 			break
 	if win:
-		Win.popup_centered()
-		queue_free()	
+		Win.popup_centered()	
 func _on_chosen_enemy(Enemy: Variant) -> void:
 	chose_enemy = Enemy
 	print('have enemy')
@@ -94,10 +123,15 @@ func _on_chosen_animal(Animal: Variant) -> void:
 func _on_next_tern_pressed() -> void:
 	print('next tern')
 	tern+=1
-	tmpEnergy = fullEnergy
+	skills.tmpEnergy = fullEnergy
 	for i:Animal in animals:
 			if i.tmpCooldawn>0:
 				i.tmpCooldawn-=1
 
 	for i:Enemy in Enemies:
-			TakenDamage+=i.attack
+		if i == null:
+			continue
+		if !i.stun:
+			skills.TakenDamage+=i.attack
+		if i.stun:
+			i.stun = false
