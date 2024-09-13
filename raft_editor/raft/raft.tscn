@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctdk6gh38vany"]
+
+[ext_resource type="Script" path="res://raft_editor/raft/raft.gd" id="1_6dbvc"]
+
+[node name="Raft" type="Node2D"]
+script = ExtResource("1_6dbvc")

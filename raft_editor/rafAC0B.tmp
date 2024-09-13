@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctdk6gh38vany"]
+
+[ext_resource type="Script" path="res://raft/raft.gd" id="1_upq8j"]
+[ext_resource type="PackedScene" uid="uid://dchjls84gte1i" path="res://raft/cell.tscn" id="2_qvkxq"]
+
+[node name="Raft" type="Node2D"]
+script = ExtResource("1_upq8j")
+cell_scen = ExtResource("2_qvkxq")
