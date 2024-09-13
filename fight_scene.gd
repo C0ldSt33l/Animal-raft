@@ -44,19 +44,19 @@ func _ready() -> void:
 	tmpEnergy = fullEnergy
 	for i in 13:
 		var animal := animal_scene.instantiate() as Animal
-		animal._Name = 'Wolf'
+		animal._Name = 'Skunk'
 		animal._size = 3
 		animal.position = points2D[i]
 		animals.append(animal)
 		add_child(animal)
 		
 		animal.choosen_animal.connect(self._on_chosen_animal)
-	for i in range(14,15):
+	for i in range(13,15):
 		var enemy := Enemy_scene.instantiate() as Enemy
 		add_child(enemy)
+		Enemies.append(enemy)
 		enemy.chosen_enemy.connect(self._on_chosen_enemy)
 		enemy.position = points2D[i]
-		Enemies.append(enemy)
 
 #тут будет уменьшение кулдауна всем животным в конце хода
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -72,7 +72,7 @@ func _process(delta: float) -> void:
 		skills.FUNC_DIC[chose_animal.getName()][1].call(chose_enemy)
 		chose_animal = null
 		chose_enemy = null
-
+	
 	if Enemies.is_empty():
 		Win.popup_centered()
 
@@ -94,4 +94,7 @@ func _on_next_tern_pressed() -> void:
 	tmpEnergy = fullEnergy
 	for i:Animal in animals:
 			if i.tmpCooldawn>0:
-				i.tmpCooldawn-=1# Replace with function body.
+				i.tmpCooldawn-=1
+				
+	for i:Enemy in Enemies:
+			TakenDamage+=i.attack
