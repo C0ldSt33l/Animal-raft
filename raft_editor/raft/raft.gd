@@ -13,31 +13,8 @@ var cells: Array[Cell] = []
 
 
 func _ready() -> void:
-	var cur_pos := Vector2i.ZERO 
-	for row in range(self.ARRAY_SIZE.y):
-		for col in range(self.ARRAY_SIZE.x):
-			var cell := Cell.add_to_scene(self, Cell.TYPE.VOID)
-			cell.position = cur_pos
-			cell.pos_in_raft = Vector2i(col, row)
-			cell.hide()
-
-			self.cells.append(cell)
-
-			cur_pos.x += Cell.CELL_SIZE.x + 10
-
-		cur_pos.y += Cell.CELL_SIZE.y + 10
-		cur_pos.x = 0
-
-	var center := Cell.add_to_scene(self, Cell.TYPE.CENTER)
-	self.set_cell(
-		self.CENTRE_CELL_POS,
-		center	
-	)
-	self.set_cell(
-		Vector2i.ZERO,
-		center
-	)
-		
+	self._setup_cells()
+			
 	self._make_cells_visible([
 		self.CENTRE_CELL_POS,
 
@@ -60,12 +37,12 @@ func get_cell(pos: Vector2i) -> Cell:
 	return self.cells[index]
 
 
-func set_cell(pos: Vector2i, new_cell: Cell, offset: Vector2 = Vector2.ZERO) -> void:
+func set_cell(pos: Vector2i, new_cell: Cell) -> void:
 	var index := self._coord_to_index(pos)
 	var old_cell := self.cells[index]
 
-	new_cell.position = old_cell.position + offset
-	new_cell.pos_in_raft = old_cell.pos_in_raft
+	new_cell.position = old_cell.position 
+	new_cell.pos_in_raft = pos
 	new_cell.is_handle_mouse = true
 
 	self.cells[index] = new_cell
@@ -88,3 +65,31 @@ func _coord_to_index(pos: Vector2i) -> int:
 	var y := pos.y * self.ARRAY_SIZE.y
 
 	return x + y
+
+
+func _setup_cells() -> void:
+	var cur_pos := Vector2i.ZERO 
+	for row in range(self.ARRAY_SIZE.y):
+		for col in range(self.ARRAY_SIZE.x):
+			var cell: Cell
+			if Vector2i(col, row) == self.CENTRE_CELL_POS:
+				cell = Cell.add_to_scene(self, Cell.TYPE.CENTER)
+			else:
+				cell = Cell.add_to_scene(self, Cell.TYPE.VOID)
+			cell.position = cur_pos
+			cell.pos_in_raft = Vector2i(col, row)
+			cell.hide()
+
+			self.cells.append(cell)
+
+			cur_pos.x += Cell.CELL_SIZE.x + 10
+
+		cur_pos.y += Cell.CELL_SIZE.y + 10
+		cur_pos.x = 0
+
+
+func _get_pos_in_raft(pos: Vector2i) -> Vector2:
+	var x := pos.x * Cell.CELL_SIZE.x
+	var y := pos.y * Cell.CELL_SIZE.y
+
+	return Vector2(x, y)

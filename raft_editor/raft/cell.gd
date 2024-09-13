@@ -31,7 +31,7 @@ const _SCENE := preload('res://raft_editor/raft/cell.tscn')
 var _health: int 
 # var pos_in_raft := Vector2i(0, 0)
 
-var store_unit: Object = null
+var store_unit: Node2D = null
 var type: TYPE :
 	set(value):
 		type = value
@@ -73,13 +73,14 @@ func _draw() -> void:
 		self.store_unit._draw()
 
 
-func attach_unit(unit: Object) -> void:
+func attach_unit(unit: Node2D) -> void:
 	if !self.store_unit:
 		self.cell_has_no_empty_space.emit()
 		return
 	
 	print('unit is attached')
 	self.store_unit = unit
+	unit.position = self.position
 
 
 func upgrade() -> void:
