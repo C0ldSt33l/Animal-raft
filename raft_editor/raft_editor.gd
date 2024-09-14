@@ -4,8 +4,8 @@ extends Node2D
 var selected_raft_cell: Cell = null
 var selected_object: Node2D = null
 
-@onready var raft := $Raft as Raft
-@onready var available_object_menu := $"Available object menu" as AvailableObjectMenu
+@onready var raft := $"UI/Raft" as Raft
+@onready var available_object_menu := $"UI/Available object menu" as AvailableObjectMenu
 
 
 func _ready() -> void:
@@ -15,7 +15,11 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if !self.selected_object:
 		return
-	self.selected_object.position = self.get_local_mouse_position() - self.raft.position
+	
+	var mouse_local_pos := self.get_local_mouse_position()
+	var raft_pos := self.raft.position
+	var obj_size := Cell.CELL_SIZE as Vector2
+	self.selected_object.position = mouse_local_pos - raft_pos - obj_size / 2
 	if Input.is_action_pressed('click'):
 		for cell in self.raft.cells:
 			if cell.is_mouse_inside and cell.pos_in_raft != self.raft.CENTRE_CELL_POS:
@@ -37,6 +41,10 @@ func _setup_card_signal() -> void:
 
 
 func _create_obj(name: String) -> void:
+	if self.selected_object:
+		self.selected_object.queue_free()
+		self.selected_object = null
+		
 	var new_object: Node2D 
 	match name.to_lower():
 		'branch':
@@ -51,4 +59,5 @@ func _create_obj(name: String) -> void:
 	if new_object is Cell:
 		new_object.is_handle_mouse = false
 	print("object '", name, "' is created")
+	
 	self.selected_object = new_object

@@ -46,7 +46,7 @@ func set_cell(pos: Vector2i, new_cell: Cell) -> void:
 	new_cell.is_handle_mouse = true
 
 	self.cells[index] = new_cell
-	self.remove_child(old_cell)
+	old_cell.queue_free()
 
 
 func get_centre_cell() -> Cell:

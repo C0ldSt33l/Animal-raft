@@ -93,6 +93,10 @@ func upgrade() -> void:
 			print('this cell cant be upgraded')
 
 
+func has_point(point: Vector2) -> bool:
+	return self.texture_button.get_rect().has_point(point)
+
+
 static func add_to_scene(scene: Node, type: TYPE) -> Cell:
 	var cell := _SCENE.instantiate() as Cell
 	cell.type = type

@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://bp3md7p7xaaxw" path="res://tilesets/ocean_tileset.tres" id="2_e6j4f"]
 [ext_resource type="PackedScene" uid="uid://dvl5sttc45as0" path="res://raft_editor/ui elements/available_object_menu.tscn" id="3_pvno0"]
 [ext_resource type="Script" path="res://scenes/world/tml_ocean.gd" id="3_ucdf1"]
-[ext_resource type="PackedScene" path="res://scenes/left_bar.tscn" id="6_7eoji"]
+[ext_resource type="PackedScene" uid="uid://b2olrhivflsdo" path="res://scenes/left_bar.tscn" id="6_7eoji"]
 
 [node name="RaftEditor" type="Node2D"]
 script = ExtResource("1_ald06")
@@ -21,13 +21,15 @@ tiles_columns = 8
 tiles_rows = 2
 total_frames = 16
 
-[node name="Raft" parent="." instance=ExtResource("1_mw8v2")]
-position = Vector2(420, 35)
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Available object menu" parent="." instance=ExtResource("3_pvno0")]
+[node name="LeftBar" parent="UI" instance=ExtResource("6_7eoji")]
+
+[node name="Available object menu" parent="UI" instance=ExtResource("3_pvno0")]
 offset_left = 322.0
 offset_top = 564.0
 offset_right = 1278.0
 offset_bottom = 720.0
 
-[node name="LeftBar" parent="." instance=ExtResource("6_7eoji")]
+[node name="Raft" parent="UI" instance=ExtResource("1_mw8v2")]
+position = Vector2(420, 35)
